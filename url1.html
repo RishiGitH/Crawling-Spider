@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home!</title>
+  <!-- import Bulma CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+  <!-- custom styles -->
+  <style>
+    #post-list .card {
+      margin-bottom: 10px;
+    }
+    #post-list .card.deactivated {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Spider Crawler</h1>
+      <p class="subtitle">Enter a Url!</p>
+
+      <div class="columns">
+        <div class="column">
+          <form id="post-form" method="POST" >
+            <div class="field">
+              <label class="label">URL</label>
+              <div class="control">
+              	<input type="url" name="url" id="url"
+  						placeholder="https://example.com"
+   						pattern="https://.*" size="30"
+   						required>
+              </div>
+            </div>
+
+
+            <div class="field">
+              <button class="button is-primary" input type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div  class="container">
+
+        	<p>{{data}}</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</body>
+</html>
