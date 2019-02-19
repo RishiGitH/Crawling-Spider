@@ -2,10 +2,9 @@ SPIDER Crawler
 
 1)I was not able to complete the app in time . The realtime display part is not there yet
 2)The flask requests and gets the link input by the user
-3)The link is then passed to crawler.py where  htmlparser is used that extracts hrefs 
-4)then only links internal to the domain will be fetched and catched
-5)recursively all the urls will be bounced and obtained 
-6) the python has a stack limit of 1000 so we can update it till a limited depth like 1500 used . But the limit has to be set can't run infinitely 
-7)all the urls are stored in crawler.db
-8)run python app.py
-9)requirements.txt all modules are not necessary only the imported ones
+3Then all the url of that page are scraped and enetered into the db
+4)Then each url is parsed and their page is scraped until there is none left
+5)all the urls are stored in db
+6)then they are displayed in the page with count
+7)run python app.py
+8)requirements.txt all modules are not necessary only the imported ones
