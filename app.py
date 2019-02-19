@@ -1,50 +1,40 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,redirect ,url_for,session
+import test2
 try:
-    import urllib.request as urllib2
+	import urllib.request as urllib2
 except ImportError:
-    import urllib2
+	import urllib2
 from urllib.parse import urlparse
-from crawler import Crawler, CrawlerCache
+from random import randint
 import re
 app = Flask(__name__, template_folder='website')
+app.secret_key = "5H473893939$385H"
 
 
 @app.route('/')
 def my_form():
-    return render_template('url1.html')
+	return render_template('url1.html')
 
 @app.route('/', methods=['POST'])
 def my_form_post():
-    text = request.form['url']
-    processed_text = text
-    
-    return token(processed_text)
-
-def token(data_text=''):
+	text = request.form['url']
+	session['processed_text'] = text
+	session['val']=0
 	
-	'''
-	One way to getting all url 
-	connect to a URL
-				website = urllib2.urlopen(x)
-			
-			    #read html code
-				html = website.read()
-			
-				links = re.findall('"((http|ftp)s?://.*?)"', html)
+	return redirect(url_for('data'))
 
-				print (links)
-	'''
+@app.route('/data')
+def data():
+	if(session.get('val', None)==0):
+		data=test2.data(session.get('processed_text', None))
+	else:
+		data=test2.loop()
+	session['val']=1
 
-	crawler = Crawler(CrawlerCache('crawler.db'),depth=1500)
-	crawler.crawl(data_text,no_cache=re.compile('^/$').match)
-	# displays the urls
-	data_text=data_text[8:-1]
-	print(crawler.content[data_text].keys())
-	return(data_text)
 
-url1=app.route('/', methods=['POST'])
-print(url1)
+	return render_template('url2.html',data=data)
+
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+	app.run(debug=True)
