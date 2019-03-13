@@ -110,9 +110,8 @@ def loop():
     if(loop.k>=len(l)):
         exit()
     while(loop.k<=len(l)):
-        time.sleep(6)
         print("l[loop.k]={}".format(l[loop.k]))
-        print("s={}".format(run.s))
+        #print("s={}".format(run.s))
         try:
             connection = urlopen(l[loop.k])
 
@@ -121,13 +120,13 @@ def loop():
                 if(link not in l and run.s+link not in l):
                     if(rg.search(link)!=None ):
                         l.append(link)
-                        print("link={}".format(link))
+                        #print("link={}".format(link))
                         insert_data(con,len(l),link)
                         j+=1
                     if(rd.search(link)!=None ):
                         l.append(run.s +link)
                         insert_data(con,len(l),run.s+link)
-                        print("s+link={}".format(run.s+link))
+                        #print("s+link={}".format(run.s+link))
                         j+=1
 
             loop.k+=1
@@ -144,6 +143,4 @@ loop.c=0
 def data(txt):
     z=run(txt)
     return z
-
-
 

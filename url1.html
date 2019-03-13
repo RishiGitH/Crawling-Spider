@@ -15,6 +15,7 @@
     }
   </style>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <body>
   <section class="section">
     <div class="container">
@@ -40,10 +41,23 @@
             </div>
           </form>
         </div>
-        <div  class="container">
+        <div  class="container" id="place_for_suggestions">
 
         	<p>{{data}}</p>
         </div>
+       <script>
+        $.ajax({
+          url: "/suggestions",
+          type: "get",
+          data: {jsdata: text},
+          success: function(response) {
+            $("#place_for_suggestions").html(response);
+          }
+          error: function(xhr) {
+            //Do Something to handle error
+          },
+        },2000);
+      </script>
 
       </div>
 
